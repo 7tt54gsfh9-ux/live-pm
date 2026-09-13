@@ -1,20 +1,17 @@
 import type { FirebaseWebConfig } from './types';
 
 /**
- * Paste your Firebase web app config here once you create a project
- * (see FIREBASE_SETUP.md). Until then, placeholders keep the Setup screen visible.
- *
- * Values are public-by-design for client apps; Realtime Database rules
- * restrict access to /livePm only.
+ * Firebase web config for project live-pm.
+ * Client values are public-by-design; Realtime Database rules gate /livePm.
  */
 export const BAKED_FIREBASE_CONFIG: FirebaseWebConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_PROJECT.firebaseapp.com',
-  databaseURL: 'https://YOUR_PROJECT-default-rtdb.firebaseio.com',
-  projectId: 'YOUR_PROJECT',
-  storageBucket: 'YOUR_PROJECT.appspot.com',
-  messagingSenderId: 'YOUR_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: 'AIzaSyAdCWdCTXCrYdowrY-h93pifFUgoazjq84',
+  authDomain: 'live-pm.firebaseapp.com',
+  databaseURL: 'https://live-pm-default-rtdb.firebaseio.com',
+  projectId: 'live-pm',
+  storageBucket: 'live-pm.firebasestorage.app',
+  messagingSenderId: '924457889076',
+  appId: '1:924457889076:web:dd8be56c18c8a8b7224961',
 };
 
 export function isConfigComplete(cfg: Partial<FirebaseWebConfig> | null | undefined): boolean {
