@@ -1,58 +1,79 @@
 # Live PM
 
-Static mirror of **Live PM** — a shared-fleet countdown tracker for compressor unit preventive maintenance.
+Shared-fleet **compressor PM countdown** for phones. Free on GitHub Pages; shared state via **Firebase Realtime Database**.
 
-Original host: `https://sail-reef-beacon-topaz.grok.me/`
+**Live:** https://7tt54gsfh9-ux.github.io/live-pm/
 
-## What it is
+## Features
 
-A Vite / TanStack Start SPA that lists fleet compressor units with:
+- Unit list with search + filters (Overdue / Due soon / On track / All)
+- Overdue counts and 60-day PM interval countdown
+- Add unit, Log PM, Reset clock, Remove
+- Fields: unit #, engine model, location, last PM, next PM, days remaining
+- **Realtime multi-phone sync** (Firebase `onValue`)
+- PWA with **green wrench** home-screen icon (180 / 192 / 512 / maskable)
+- Mobile-first green theme (`#2D6A4F`)
 
-- Unit number, engine model, location
-- Last PM / next PM dates and day countdown
-- Filters (all / overdue / due soon / etc.) and search
-- UI to add units, log PM, or reset the 60-day clock
+## How sync works
 
-## Standalone / offline status
+1. Each browser loads Firebase web config (baked in `src/firebaseConfig.ts` **or** pasted on the Setup screen → `localStorage`).
+2. Clients subscribe to `/livePm/units` with Realtime Database listeners.
+3. Mutations write the same path; other phones update live.
+4. Optimistic UI keeps taps snappy while sync catches up.
 
-This GitHub Pages build is a **static snapshot**:
+Does **not** depend on grok.me.
 
-| Works offline | Needs original grok.me host |
-|---|---|
-| Browse the unit list (SSR-embedded snapshot) | Live refetch every few seconds |
-| Search / filter / sort in the UI | Add unit / Log PM / Reset / Remove (server functions) |
-| Basic PWA shell (manifest + icon) | Grok App Builder extensions |
+## First-time setup (Ivan)
 
-Mutations and live sync call TanStack `/_serverFn/*` on the original host. Those APIs are not available on GitHub Pages (and are not CORS-open to `github.io`), so write actions will fail here. For full live behavior, use the original URL.
+See **[FIREBASE_SETUP.md](./FIREBASE_SETUP.md)** for click-by-click free Spark steps:
 
-## GitHub Pages
+1. Create Firebase project  
+2. Enable Realtime Database  
+3. Publish rules allowing read/write only under `/livePm`  
+4. Copy web config → paste in Setup (or bake into `src/firebaseConfig.ts`)  
+5. Tap **Load starter fleet** once  
 
-Published at: **https://7tt54gsfh9-ux.github.io/live-pm/**
+Until config is set, the app shows a Setup gate.
 
-## Local preview
+## Add to Home Screen (wrench icon)
 
-Serve the repo root (or `gh-pages` contents) under the `/live-pm/` base path, e.g.:
+- **iPhone:** Safari → Share → Add to Home Screen  
+- **Android:** Chrome → menu → Install app / Add to Home screen  
+
+Icons: `public/icons/icon-{180,192,512}.png` + `icon-maskable-512.png`.
+
+## Develop
 
 ```bash
-npx --yes serve -p 4173 .
-# then open http://localhost:4173/live-pm/
+cd live-pm-app   # or this repo root after deploy
+npm install
+npm run dev
 ```
 
-Or with Python from parent:
+Build for Pages (`base: '/live-pm/'`):
 
 ```bash
-cd /workspace && python3 -m http.server 4173
-# open http://localhost:4173/live-pm/
+npm run build
+# output in dist/ — publish to gh-pages
 ```
 
-## Mirror notes
+## Seed data
 
-- Asset paths rewritten for base `/live-pm/`
-- Router `basepath` set to `/live-pm`
-- `grok.com/.../extensions.js` removed
-- Client refetch disabled so the embedded unit snapshot stays visible without the API
-- Do not commit GitHub tokens
+`src/data/seedUnits.ts` — ~41 units parsed from the previous Live PM mirror. Used only by **Load starter fleet** when Firebase is empty.
 
-## License / provenance
+## Security rules (paste in Firebase console)
 
-Unofficial static mirror for archival / demo. Data and branding originate from the Grok-hosted app.
+```json
+{
+  "rules": {
+    "livePm": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}
+```
+
+## License / notes
+
+Unofficial rebuild for field use. Free hosting on GitHub Pages; free Firebase Spark for sync.
