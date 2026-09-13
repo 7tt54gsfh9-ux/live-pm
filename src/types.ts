@@ -24,4 +24,4 @@ export interface FirebaseWebConfig {
 }
 
 export const PM_INTERVAL_DAYS = 60;
-export const DUE_SOON_DAYS = 30;
+export const DUE_SOON_DAYS = 15;
