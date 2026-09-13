@@ -1,0 +1,18 @@
+{
+  "name": "Live PM",
+  "short_name": "Live PM",
+  "id": "/live-pm/",
+  "start_url": "/live-pm/",
+  "scope": "/live-pm/",
+  "display": "standalone",
+  "background_color": "#161a17",
+  "theme_color": "#161a17",
+  "description": "Countdown tracker for compressor unit preventive maintenance.",
+  "icons": [
+    {
+      "src": "/live-pm/__grok/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
