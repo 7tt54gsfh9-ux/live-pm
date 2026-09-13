@@ -1,12 +1,13 @@
 import { useMemo, useState } from 'react';
 import { AddUnitModal } from './components/AddUnitModal';
+import { LogPmModal } from './components/LogPmModal';
 import { SetupScreen } from './components/SetupScreen';
 import { UnitCard } from './components/UnitCard';
 import { clearStoredConfig, resolveConfig } from './lib/firebase';
 import { formatHeaderDate } from './lib/dates';
 import { useUnits } from './hooks/useUnits';
 import { SEED_UNITS } from './data/seedUnits';
-import type { FirebaseWebConfig, StatusFilter } from './types';
+import type { FirebaseWebConfig, StatusFilter, Unit } from './types';
 
 const FILTERS: { id: StatusFilter; label: string; countKey: 'total' | 'overdue' | 'dueSoon' | 'onTrack' }[] = [
   { id: 'overdue', label: 'Overdue', countKey: 'overdue' },
@@ -18,6 +19,7 @@ const FILTERS: { id: StatusFilter; label: string; countKey: 'total' | 'overdue' 
 export default function App() {
   const [config, setConfig] = useState<FirebaseWebConfig | null>(() => resolveConfig());
   const [addOpen, setAddOpen] = useState(false);
+  const [logUnit, setLogUnit] = useState<Unit | null>(null);
   const {
     filtered,
     counts,
@@ -148,7 +150,7 @@ export default function App() {
           <UnitCard
             key={u.id}
             unit={u}
-            onLogPm={(unit) => void logPm(unit)}
+            onLogPm={(unit) => setLogUnit(unit)}
             onReset={(unit) => {
               if (confirm(`Reset PM clock for ${unit.unitNumber} from today?`)) void resetPm(unit);
             }}
@@ -175,6 +177,14 @@ export default function App() {
       </div>
 
       <AddUnitModal open={addOpen} onClose={() => setAddOpen(false)} onSave={addUnit} />
+      <LogPmModal
+        open={logUnit !== null}
+        unit={logUnit}
+        onClose={() => setLogUnit(null)}
+        onConfirm={async (unit, lastPm) => {
+          await logPm(unit, lastPm);
+        }}
+      />
     </div>
   );
 }
