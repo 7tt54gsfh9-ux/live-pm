@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { AddUnitModal } from './components/AddUnitModal';
 import { LogPmModal } from './components/LogPmModal';
+import { EditLocationModal } from './components/EditLocationModal';
 import { SetupScreen } from './components/SetupScreen';
 import { UnitCard } from './components/UnitCard';
 import { clearStoredConfig, resolveConfig } from './lib/firebase';
@@ -20,6 +21,7 @@ export default function App() {
   const [config, setConfig] = useState<FirebaseWebConfig | null>(() => resolveConfig());
   const [addOpen, setAddOpen] = useState(false);
   const [logUnit, setLogUnit] = useState<Unit | null>(null);
+  const [editUnit, setEditUnit] = useState<Unit | null>(null);
   const {
     filtered,
     counts,
@@ -32,6 +34,7 @@ export default function App() {
     addUnit,
     logPm,
     resetPm,
+    updateLocation,
     removeUnit,
     loadStarterFleet,
     seeding,
@@ -45,7 +48,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-dvh bg-forest-950 text-white pb-28">
+    <div className="min-h-dvh bg-forest-950 text-white pb-8">
       <header className="sticky top-0 z-40 border-b border-forest-800/80 bg-forest-950/95 backdrop-blur-md">
         <div className="mx-auto max-w-2xl px-4 pt-4 pb-3">
           <div className="flex items-start justify-between gap-3">
@@ -125,6 +128,15 @@ export default function App() {
               );
             })}
           </div>
+
+          <button
+            type="button"
+            aria-label="Add unit"
+            onClick={() => setAddOpen(true)}
+            className="mt-3 w-full rounded-2xl bg-emerald-600 hover:bg-emerald-500 py-3 text-base font-bold shadow-lg shadow-emerald-900/30"
+          >
+            + Add unit
+          </button>
         </div>
       </header>
 
@@ -151,6 +163,7 @@ export default function App() {
             key={u.id}
             unit={u}
             onLogPm={(unit) => setLogUnit(unit)}
+            onEditLocation={(unit) => setEditUnit(unit)}
             onReset={(unit) => {
               if (confirm(`Reset PM clock for ${unit.unitNumber} from today?`)) void resetPm(unit);
             }}
@@ -163,19 +176,6 @@ export default function App() {
         )}
       </main>
 
-      <div className="fixed bottom-0 inset-x-0 z-40 border-t border-forest-800 bg-forest-950/95 backdrop-blur-md">
-        <div className="mx-auto max-w-2xl px-4 py-3">
-          <button
-            type="button"
-            aria-label="Add unit"
-            onClick={() => setAddOpen(true)}
-            className="w-full rounded-2xl bg-emerald-600 hover:bg-emerald-500 py-3.5 text-base font-bold shadow-lg shadow-emerald-900/40"
-          >
-            + Add unit
-          </button>
-        </div>
-      </div>
-
       <AddUnitModal open={addOpen} onClose={() => setAddOpen(false)} onSave={addUnit} />
       <LogPmModal
         open={logUnit !== null}
@@ -183,6 +183,14 @@ export default function App() {
         onClose={() => setLogUnit(null)}
         onConfirm={async (unit, lastPm) => {
           await logPm(unit, lastPm);
+        }}
+      />
+      <EditLocationModal
+        open={editUnit !== null}
+        unit={editUnit}
+        onClose={() => setEditUnit(null)}
+        onSave={async (unit, location) => {
+          await updateLocation(unit, location);
         }}
       />
     </div>

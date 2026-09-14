@@ -117,6 +117,17 @@ export function useUnits(config: FirebaseWebConfig | null) {
     [logPm],
   );
 
+
+  const updateLocation = useCallback(
+    async (unit: Unit, location: string) => {
+      if (!config) throw new Error('No Firebase config');
+      const next: Unit = { ...unit, location: location.trim() };
+      optimisticReplace(next);
+      await upsertUnit(config, next);
+    },
+    [config, optimisticReplace],
+  );
+
   const removeUnit = useCallback(
     async (id: string) => {
       if (!config) throw new Error('No Firebase config');
@@ -150,6 +161,7 @@ export function useUnits(config: FirebaseWebConfig | null) {
     addUnit,
     logPm,
     resetPm,
+    updateLocation,
     removeUnit,
     loadStarterFleet,
     seeding,
