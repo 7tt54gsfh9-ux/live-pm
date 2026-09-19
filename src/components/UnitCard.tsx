@@ -51,7 +51,7 @@ export function UnitCard({ unit, onLogPm, onEditLocation, onRemove }: Props) {
         <div>
           <p
             className={`text-3xl font-bold tabular-nums ${
-              overdue ? 'text-[#B91C1C]' : status === 'dueSoon' ? 'text-amber-700' : 'text-emerald-600'
+              overdue ? 'text-[#B91C1C]' : status === 'dueSoon' ? 'text-amber-400' : 'text-emerald-600'
             }`}
           >
             {overdue ? `-${Math.abs(days)}` : days}
