@@ -5,11 +5,10 @@ interface Props {
   unit: Unit;
   onLogPm: (unit: Unit) => void;
   onEditLocation: (unit: Unit) => void;
-  onReset: (unit: Unit) => void;
   onRemove: (unit: Unit) => void;
 }
 
-export function UnitCard({ unit, onLogPm, onEditLocation, onReset, onRemove }: Props) {
+export function UnitCard({ unit, onLogPm, onEditLocation, onRemove }: Props) {
   const days = daysRemaining(unit.nextPm);
   const status = unitStatus(unit.nextPm);
   const overdue = status === 'overdue';
@@ -102,14 +101,6 @@ export function UnitCard({ unit, onLogPm, onEditLocation, onReset, onRemove }: P
           title="Edit location"
         >
           Move
-        </button>
-        <button
-          type="button"
-          onClick={() => onReset(unit)}
-          className="rounded-xl bg-forest-700 hover:bg-forest-600 px-3 py-2.5 text-sm font-medium text-forest-100"
-          title="Reset 60-day clock from today"
-        >
-          Reset
         </button>
         <button
           type="button"

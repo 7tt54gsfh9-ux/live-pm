@@ -33,7 +33,6 @@ export default function App() {
     setFilter,
     addUnit,
     logPm,
-    resetPm,
     updateLocation,
     removeUnit,
     loadStarterFleet,
@@ -164,9 +163,6 @@ export default function App() {
             unit={u}
             onLogPm={(unit) => setLogUnit(unit)}
             onEditLocation={(unit) => setEditUnit(unit)}
-            onReset={(unit) => {
-              if (confirm(`Reset PM clock for ${unit.unitNumber} from today?`)) void resetPm(unit);
-            }}
             onRemove={(unit) => void removeUnit(unit.id)}
           />
         ))}
