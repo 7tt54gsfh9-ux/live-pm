@@ -5,8 +5,8 @@
   "start_url": "/live-pm/?v=3",
   "scope": "/live-pm/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2D6A4F",
+  "background_color": "#F7F5F0",
+  "theme_color": "#121212",
   "description": "Shared fleet compressor PM countdown tracker.",
   "icons": [
     {

@@ -48,57 +48,57 @@ export function AddUnitModal({ open, onClose, onSave }: Props) {
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-4">
       <form
         onSubmit={submit}
-        className="w-full max-w-md rounded-2xl bg-forest-900 border border-forest-600 p-5 shadow-2xl space-y-3"
+        className="w-full max-w-md rounded-2xl bg-white border border-[#E4E4E7] p-5 shadow-2xl space-y-3 text-[#121212]"
       >
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold">Add unit</h2>
-          <button type="button" onClick={onClose} className="text-forest-400 hover:text-white text-xl px-2">
+          <h2 className="text-lg font-bold text-[#121212]">Add unit</h2>
+          <button type="button" onClick={onClose} className="text-[#71717A] hover:text-[#121212] text-xl px-2">
             ×
           </button>
         </div>
         <label className="block text-sm">
-          <span className="text-forest-300">Unit #</span>
+          <span className="text-[#71717A]">Unit #</span>
           <input
             required
-            className="mt-1 w-full rounded-lg bg-forest-950 border border-forest-600 px-3 py-2"
+            className="mt-1 w-full rounded-lg bg-white border border-[#E4E4E7] px-3 py-2 text-[#121212]"
             value={unitNumber}
             onChange={(e) => setUnitNumber(e.target.value)}
             placeholder="e.g. 8450"
           />
         </label>
         <label className="block text-sm">
-          <span className="text-forest-300">Engine model</span>
+          <span className="text-[#71717A]">Engine model</span>
           <input
-            className="mt-1 w-full rounded-lg bg-forest-950 border border-forest-600 px-3 py-2"
+            className="mt-1 w-full rounded-lg bg-white border border-[#E4E4E7] px-3 py-2 text-[#121212]"
             value={engineModel}
             onChange={(e) => setEngineModel(e.target.value)}
             placeholder="e.g. CAT 3306 NAC"
           />
         </label>
         <label className="block text-sm">
-          <span className="text-forest-300">Location</span>
+          <span className="text-[#71717A]">Location</span>
           <input
-            className="mt-1 w-full rounded-lg bg-forest-950 border border-forest-600 px-3 py-2"
+            className="mt-1 w-full rounded-lg bg-white border border-[#E4E4E7] px-3 py-2 text-[#121212]"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Pad / well name"
           />
         </label>
         <label className="block text-sm">
-          <span className="text-forest-300">Last PM</span>
+          <span className="text-[#71717A]">Last PM</span>
           <input
             type="date"
-            className="mt-1 w-full rounded-lg bg-forest-950 border border-forest-600 px-3 py-2"
+            className="mt-1 w-full rounded-lg bg-white border border-[#E4E4E7] px-3 py-2 text-[#121212]"
             value={lastPm}
             onChange={(e) => setLastPm(e.target.value)}
           />
         </label>
-        <p className="text-xs text-forest-400">Next PM is set to Last PM + 60 days.</p>
-        {error && <p className="text-red-300 text-sm">{error}</p>}
+        <p className="text-xs text-[#71717A]">Next PM is set to Last PM + 60 days.</p>
+        {error && <p className="text-[#B91C1C] text-sm">{error}</p>}
         <button
           type="submit"
           disabled={busy}
-          className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 py-3 font-semibold disabled:opacity-60"
+          className="w-full rounded-xl bg-black hover:bg-[#1a1a1a] text-white py-3 font-semibold disabled:opacity-60"
         >
           {busy ? 'Saving…' : 'Add unit'}
         </button>

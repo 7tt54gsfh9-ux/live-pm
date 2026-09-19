@@ -47,21 +47,21 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-dvh bg-forest-950 text-white pb-8">
-      <header className="sticky top-0 z-40 border-b border-forest-800/80 bg-forest-950/95 backdrop-blur-md">
+    <div className="min-h-dvh bg-forest-950 text-[#121212] pb-8">
+      <header className="sticky top-0 z-40 border-b border-[#121212] bg-[#121212]/95 text-white backdrop-blur-md">
         <div className="mx-auto max-w-2xl px-4 pt-4 pb-3">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="text-xs uppercase tracking-wider text-emerald-400/90 font-semibold">Shared fleet</p>
-              <h1 className="text-2xl font-bold tracking-tight">Live PM</h1>
-              <p className="text-forest-400 text-sm">{headerDate}</p>
+              <p className="text-xs uppercase tracking-wider text-zinc-400 font-semibold">Shared fleet</p>
+              <h1 className="text-2xl font-bold tracking-tight text-white">Live PM</h1>
+              <p className="text-zinc-400 text-sm">{headerDate}</p>
             </div>
             <div className="text-right">
-              <p className="text-3xl font-bold tabular-nums leading-none">{counts.total}</p>
-              <p className="text-xs text-forest-400">units</p>
+              <p className="text-3xl font-bold tabular-nums leading-none text-white">{counts.total}</p>
+              <p className="text-xs text-zinc-400">units</p>
               <p className="mt-1 text-sm">
-                <span className="text-red-400 font-semibold tabular-nums">{counts.overdue}</span>
-                <span className="text-forest-400"> overdue</span>
+                <span className="text-[#F87171] font-semibold tabular-nums">{counts.overdue}</span>
+                <span className="text-zinc-400"> overdue</span>
               </p>
             </div>
           </div>
@@ -69,15 +69,15 @@ export default function App() {
           <div className="mt-3 flex items-center gap-2 text-xs">
             <span
               className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 ${
-                connected ? 'bg-emerald-500/15 text-emerald-300' : 'bg-amber-500/15 text-amber-200'
+                connected ? 'bg-white/10 text-zinc-200' : 'bg-amber-500/20 text-amber-200'
               }`}
             >
-              <span className={`h-1.5 w-1.5 rounded-full ${connected ? 'bg-emerald-400' : 'bg-amber-400 animate-pulse'}`} />
+              <span className={`h-1.5 w-1.5 rounded-full ${connected ? 'bg-zinc-300' : 'bg-amber-400 animate-pulse'}`} />
               {connected ? 'Live sync' : 'Connecting…'}
             </span>
             <button
               type="button"
-              className="text-forest-500 hover:text-forest-300 underline-offset-2 hover:underline ml-auto"
+              className="text-zinc-500 hover:text-zinc-300 underline-offset-2 hover:underline ml-auto"
               onClick={() => {
                 if (confirm('Clear Firebase config on this device and reopen Setup?')) {
                   clearStoredConfig();
@@ -90,7 +90,7 @@ export default function App() {
           </div>
 
           {error && (
-            <p className="mt-2 text-sm text-red-300 bg-red-950/40 border border-red-800/50 rounded-lg px-3 py-2">
+            <p className="mt-2 text-sm text-[#FEE2E2] bg-[#B91C1C]/30 border border-[#B91C1C]/50 rounded-lg px-3 py-2">
               {error}
             </p>
           )}
@@ -102,7 +102,7 @@ export default function App() {
               aria-label="Search units"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-xl bg-forest-900 border border-forest-700 px-3 py-2.5 text-sm placeholder:text-forest-500 focus:outline-none focus:ring-2 focus:ring-emerald-600/50"
+              className="w-full rounded-xl bg-white border border-[#E4E4E7] px-3 py-2.5 text-sm text-[#121212] placeholder:text-[#71717A] focus:outline-none focus:ring-2 focus:ring-black/20"
             />
           </div>
 
@@ -117,12 +117,12 @@ export default function App() {
                   onClick={() => setFilter(f.id)}
                   className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium border transition ${
                     active
-                      ? 'bg-emerald-600 border-emerald-500 text-white'
-                      : 'bg-forest-900 border-forest-700 text-forest-200 hover:border-forest-500'
+                      ? 'bg-black border-black text-white'
+                      : 'bg-white border-[#E4E4E7] text-[#3F3F46] hover:border-[#A1A1AA]'
                   }`}
                 >
                   {f.label}
-                  <span className={`ml-1.5 tabular-nums ${active ? 'text-emerald-100' : 'text-forest-400'}`}>{n}</span>
+                  <span className={`ml-1.5 tabular-nums ${active ? 'text-zinc-300' : 'text-[#71717A]'}`}>{n}</span>
                 </button>
               );
             })}
@@ -132,7 +132,7 @@ export default function App() {
             type="button"
             aria-label="Add unit"
             onClick={() => setAddOpen(true)}
-            className="mt-3 w-full rounded-2xl bg-emerald-600 hover:bg-emerald-500 py-3 text-base font-bold shadow-lg shadow-emerald-900/30"
+            className="mt-3 w-full rounded-2xl bg-black hover:bg-[#1a1a1a] text-white py-3 text-base font-bold shadow-lg shadow-black/20"
           >
             + Add unit
           </button>
@@ -141,16 +141,16 @@ export default function App() {
 
       <main className="mx-auto max-w-2xl px-4 pt-4 space-y-3">
         {isEmpty && (
-          <div className="rounded-2xl border border-dashed border-forest-600 bg-forest-900/40 p-6 text-center space-y-3">
-            <p className="text-forest-200 font-medium">Fleet is empty</p>
-            <p className="text-sm text-forest-400">
+          <div className="rounded-2xl border border-dashed border-[#E4E4E7] bg-white p-6 text-center space-y-3">
+            <p className="text-[#18181B] font-medium">Fleet is empty</p>
+            <p className="text-sm text-[#71717A]">
               Load the starter fleet ({SEED_UNITS.length} units from the previous Live PM snapshot), or add units manually.
             </p>
             <button
               type="button"
               disabled={seeding}
               onClick={() => void loadStarterFleet()}
-              className="rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 py-2.5 text-sm font-semibold disabled:opacity-60"
+              className="rounded-xl bg-black hover:bg-[#1a1a1a] text-white px-4 py-2.5 text-sm font-semibold disabled:opacity-60"
             >
               {seeding ? 'Loading…' : 'Load starter fleet'}
             </button>
@@ -168,7 +168,7 @@ export default function App() {
         ))}
 
         {!isEmpty && filtered.length === 0 && (
-          <p className="text-center text-forest-400 py-10 text-sm">No units match this search / filter.</p>
+          <p className="text-center text-[#71717A] py-10 text-sm">No units match this search / filter.</p>
         )}
       </main>
 

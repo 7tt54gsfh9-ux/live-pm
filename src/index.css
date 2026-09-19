@@ -1,21 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-forest-950: #0f1612;
-  --color-forest-900: #161a17;
-  --color-forest-800: #1e2a22;
-  --color-forest-700: #2a3d30;
-  --color-forest-600: #355a43;
-  --color-forest-500: #2d6a4f;
-  --color-forest-400: #6b9b7f;
-  --color-forest-300: #9bc0a8;
-  --color-forest-200: #c5ddce;
-  --color-forest-100: #e8f2ec;
-  --color-emerald-600: #2d6a4f;
-  --color-emerald-500: #40916c;
-  --color-emerald-400: #52b788;
-  --color-emerald-300: #74c69d;
-  --color-emerald-100: #d8f3dc;
+  /* Light cream page + white surfaces (keep forest-* names for minimal class churn) */
+  --color-forest-950: #F7F5F0;
+  --color-forest-900: #FFFFFF;
+  --color-forest-800: #F4F4F5;
+  --color-forest-700: #E4E4E7;
+  --color-forest-600: #E4E4E7;
+  --color-forest-500: #A1A1AA;
+  --color-forest-400: #71717A;
+  --color-forest-300: #52525B;
+  --color-forest-200: #3F3F46;
+  --color-forest-100: #18181B;
+  /* Primary actions = solid black */
+  --color-emerald-700: #000000;
+  --color-emerald-600: #000000;
+  --color-emerald-500: #1a1a1a;
+  --color-emerald-400: #3F3F46;
+  --color-emerald-300: #52525B;
+  --color-emerald-200: #71717A;
+  --color-emerald-100: #F4F4F5;
 }
 
 html,
@@ -36,8 +40,8 @@ body {
     Helvetica,
     Arial,
     sans-serif;
-  background: #0f1612;
-  color: #fff;
+  background: #F7F5F0;
+  color: #121212;
   -webkit-tap-highlight-color: transparent;
 }
 
