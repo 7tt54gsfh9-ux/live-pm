@@ -69,10 +69,10 @@ export default function App() {
           <div className="mt-3 flex items-center gap-2 text-xs">
             <span
               className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 ${
-                connected ? 'bg-white/10 text-zinc-200' : 'bg-amber-500/20 text-amber-200'
+                connected ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-200'
               }`}
             >
-              <span className={`h-1.5 w-1.5 rounded-full ${connected ? 'bg-zinc-300' : 'bg-amber-400 animate-pulse'}`} />
+              <span className={`h-1.5 w-1.5 rounded-full ${connected ? 'bg-emerald-400' : 'bg-amber-400 animate-pulse'}`} />
               {connected ? 'Live sync' : 'Connecting…'}
             </span>
             <button
@@ -117,12 +117,12 @@ export default function App() {
                   onClick={() => setFilter(f.id)}
                   className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium border transition ${
                     active
-                      ? 'bg-black border-black text-white'
+                      ? 'bg-emerald-600 border-emerald-600 text-white'
                       : 'bg-white border-[#E4E4E7] text-[#3F3F46] hover:border-[#A1A1AA]'
                   }`}
                 >
                   {f.label}
-                  <span className={`ml-1.5 tabular-nums ${active ? 'text-zinc-300' : 'text-[#71717A]'}`}>{n}</span>
+                  <span className={`ml-1.5 tabular-nums ${active ? 'text-emerald-100' : 'text-[#71717A]'}`}>{n}</span>
                 </button>
               );
             })}
@@ -132,7 +132,7 @@ export default function App() {
             type="button"
             aria-label="Add unit"
             onClick={() => setAddOpen(true)}
-            className="mt-3 w-full rounded-2xl bg-black hover:bg-[#1a1a1a] text-white py-3 text-base font-bold shadow-lg shadow-black/20"
+            className="mt-3 w-full rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white py-3 text-base font-bold shadow-lg shadow-emerald-900/20"
           >
             + Add unit
           </button>

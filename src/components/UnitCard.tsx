@@ -18,7 +18,7 @@ export function UnitCard({ unit, onLogPm, onEditLocation, onRemove }: Props) {
       ? { label: 'Overdue', className: 'bg-[#FEE2E2] text-[#991B1B] border-[#FECACA]' }
       : status === 'dueSoon'
         ? { label: 'Due soon', className: 'bg-amber-50 text-amber-800 border-amber-200' }
-        : { label: 'On track', className: 'bg-zinc-100 text-zinc-600 border-zinc-200' };
+        : { label: 'On track', className: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
 
   const daysLabel = overdue
     ? `${Math.abs(days)} day${Math.abs(days) === 1 ? '' : 's'} overdue`
@@ -51,7 +51,7 @@ export function UnitCard({ unit, onLogPm, onEditLocation, onRemove }: Props) {
         <div>
           <p
             className={`text-3xl font-bold tabular-nums ${
-              overdue ? 'text-[#B91C1C]' : status === 'dueSoon' ? 'text-amber-700' : 'text-zinc-600'
+              overdue ? 'text-[#B91C1C]' : status === 'dueSoon' ? 'text-amber-700' : 'text-emerald-600'
             }`}
           >
             {overdue ? `-${Math.abs(days)}` : days}
@@ -80,7 +80,7 @@ export function UnitCard({ unit, onLogPm, onEditLocation, onRemove }: Props) {
       >
         <div
           className={`h-full rounded-full transition-all ${
-            overdue ? 'bg-[#B91C1C]' : status === 'dueSoon' ? 'bg-amber-400' : 'bg-zinc-400'
+            overdue ? 'bg-[#B91C1C]' : status === 'dueSoon' ? 'bg-amber-400' : 'bg-emerald-500'
           }`}
           style={{ width: `${overdue ? 100 : pct}%` }}
         />

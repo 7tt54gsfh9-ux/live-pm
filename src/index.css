@@ -13,13 +13,14 @@
   --color-forest-200: #3F3F46;
   --color-forest-100: #18181B;
   /* Primary actions = solid black */
-  --color-emerald-700: #000000;
-  --color-emerald-600: #000000;
-  --color-emerald-500: #1a1a1a;
-  --color-emerald-400: #3F3F46;
-  --color-emerald-300: #52525B;
-  --color-emerald-200: #71717A;
-  --color-emerald-100: #F4F4F5;
+  --color-emerald-700: #047857;
+  --color-emerald-600: #059669;
+  --color-emerald-500: #10b981;
+  --color-emerald-400: #34d399;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-50: #ecfdf5;
 }
 
 html,
