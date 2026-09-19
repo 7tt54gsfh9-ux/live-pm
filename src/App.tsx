@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { NotifyControl } from './components/NotifyControl';
 import { AddUnitModal } from './components/AddUnitModal';
 import { LogPmModal } from './components/LogPmModal';
 import { EditLocationModal } from './components/EditLocationModal';
@@ -7,6 +8,7 @@ import { UnitCard } from './components/UnitCard';
 import { clearStoredConfig, resolveConfig } from './lib/firebase';
 import { formatHeaderDate } from './lib/dates';
 import { useUnits } from './hooks/useUnits';
+import { useOverdueNotifications } from './hooks/useOverdueNotifications';
 import { SEED_UNITS } from './data/seedUnits';
 import type { FirebaseWebConfig, StatusFilter, Unit } from './types';
 
@@ -23,6 +25,7 @@ export default function App() {
   const [logUnit, setLogUnit] = useState<Unit | null>(null);
   const [editUnit, setEditUnit] = useState<Unit | null>(null);
   const {
+    units,
     filtered,
     counts,
     connected,
@@ -39,6 +42,9 @@ export default function App() {
     seeding,
     isEmpty,
   } = useUnits(config);
+
+  const { support: notifySupport, busy: notifyBusy, enable: enableNotifications } =
+    useOverdueNotifications(units, connected);
 
   const headerDate = useMemo(() => formatHeaderDate(), []);
 
@@ -66,7 +72,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mt-3 flex items-center gap-2 text-xs">
+          <div className="mt-3 flex items-center gap-2 text-xs flex-wrap">
             <span
               className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 ${
                 connected ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-200'
@@ -75,6 +81,11 @@ export default function App() {
               <span className={`h-1.5 w-1.5 rounded-full ${connected ? 'bg-emerald-400' : 'bg-amber-400 animate-pulse'}`} />
               {connected ? 'Live sync' : 'Connecting…'}
             </span>
+            <NotifyControl
+              support={notifySupport}
+              busy={notifyBusy}
+              onEnable={() => void enableNotifications()}
+            />
             <button
               type="button"
               className="text-zinc-500 hover:text-zinc-300 underline-offset-2 hover:underline ml-auto"

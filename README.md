@@ -12,7 +12,8 @@ Shared-fleet **compressor PM countdown** for phones. Free on GitHub Pages; share
 - Fields: unit #, engine model, location, last PM, next PM, days remaining
 - **Realtime multi-phone sync** (Firebase `onValue`)
 - PWA with **green wrench** home-screen icon (180 / 192 / 512 / maskable)
-- Mobile-first green theme (`#2D6A4F`)
+- Mobile-first cream / black / red / green palette
+- **Overdue notifications** (Web Notification API + PWA service worker; check-on-open)
 
 ## How sync works
 
@@ -41,6 +42,20 @@ Until config is set, the app shows a Setup gate.
 - **Android:** Chrome → menu → Install app / Add to Home screen  
 
 Icons: `public/icons/icon-{180,192,512}.png` + `icon-maskable-512.png`.
+
+
+## Overdue notifications
+
+When any units are **overdue**, Live PM can alert you on this device (not due-soon).
+
+1. Tap **Enable notifications** in the header (must be a user tap — browsers block silent permission prompts).
+2. After Firebase sync (and when you reopen / focus the app), if ≥1 unit is overdue you get a notification such as `3 units overdue` (or a couple of unit numbers when few).
+3. At most **once per calendar day per device**, unless the overdue count goes up (then it notifies again).
+4. Clicking the notification focuses / opens the app at `/live-pm/`.
+
+**iPhone:** Notifications only work after **Add to Home Screen** (Safari → Share → Add to Home Screen), then open the home-screen icon and tap Enable notifications. Plain Safari tabs cannot show web notifications.
+
+**Limits (this version):** Alerts run when the app is open, focused, or freshly opened — they use the existing PWA service worker locally. **True push while the app is fully closed** needs Firebase Cloud Messaging (FCM) + a backend later; that is not required for this first version and stays on the free Spark stack without Cloud Functions.
 
 ## Develop
 
