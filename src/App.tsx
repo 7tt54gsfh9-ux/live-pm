@@ -55,7 +55,7 @@ export default function App() {
   return (
     <div className="min-h-dvh bg-forest-950 text-[#121212] pb-8">
       <header className="sticky top-0 z-40 border-b border-[#121212] bg-[#121212]/95 text-white backdrop-blur-md">
-        <div className="mx-auto max-w-2xl px-4 pt-4 pb-3">
+        <div className="mx-auto max-w-2xl px-4 pb-3 pt-[calc(env(safe-area-inset-top)+12px)]">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs uppercase tracking-wider text-zinc-400 font-semibold">Shared fleet</p>
